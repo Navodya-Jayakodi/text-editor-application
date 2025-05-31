@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Online Text Editor</title>
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+        <style>
+            #body {
+                font-family: Arial, sans-serif;
+                padding: 20px;
+            }
+
+            #editor{
+                border:1px solid #ccc;
+                padding:10px;
+                min-height:400px;
+                font-size:16px;
+                line-height:1.5;   /*line spacing*/
+            }
+
+            #toolbar{
+                margin-bottom:10px;
+                border: 1px solid #ccc;
+                padding: 10px;
+                background:rgb(196, 196, 221)
+            }
+
+            #toolbar button{
+                background: #ecebf1;
+                border: none;
+                padding: 8px;
+                margin-right: 5px;
+                cursor: pointer;
+                border-radius: 5px;
+            }
+
+            #toolbar button:hover {
+                background: #9e9ada;
+            }
+
+            input[type="color"] {
+                width: 30px;
+                height: 30px;
+                border: none;
+                padding: 0;
+                margin-left: 5px;
+                background: none;
+                vertical-align: middle;
+                cursor: pointer;
+            }
+        </style>
+    </head>
+    <body id="body">
+        <div id="toolbar">
+            <!--Formating buttons- Bold, Italic,Underline -->
+            <button onclick="format('bold')"><b>B</b></button> 
+            <button onclick="format('italic')"><i>I</i></button>
+            <button onclick="format('underline')"><u>U</u></button>
+            <!--Font colour-->
+            <input type="color" onchange="format('foreColor', this.value)">
+            <!--Text Alignments-->
+            <button onclick="format('justifyLeft')" title="Align Left">
+                <i class="fas fa-align-left"></i>
+            </button>
+            <button onclick="format('justifyCenter')" title="Align Center">
+                <i class="fas fa-align-center"></i>
+            </button>
+            <button onclick="format('justifyRight')" title="Align Right">
+                <i class="fas fa-align-right"></i>
+            </button>
+            <button onclick="format('justifyFull')" title="Justify">
+                <i class="fas fa-align-justify"></i>
+            </button>
+            <!--Undo & Redo-->
+            <button onclick="format('undo')" title="Undo">
+                <i class="fas fa-undo"></i>
+            </button>
+
+            <button onclick="format('redo')" title="Redo">
+                <i class="fas fa-redo"></i>
+            </button>
+        </div>
+
+        <div id="editor" contenteditable="true">
+            Enter your text here.........
+        </div> 
+
+        <script>
+            function format(command,value=null){
+                document.execCommand(command,false,value);
+            }
+
+               
+
+        </script>
+    </body>
+</html>
